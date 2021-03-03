@@ -101,18 +101,19 @@ export const augmentResolvers = ({
   // must implement __resolveInfo for every Interface type
   // we use "FRAGMENT_TYPE" key to identify the Interface implementation
   // type at runtime, so grab this value
-  const derivedTypes = Object.keys(generatedTypeMap).filter(
-    e =>
-      generatedTypeMap[e].kind === 'InterfaceTypeDefinition' ||
-      generatedTypeMap[e].kind === 'UnionTypeDefinition'
-  );
-  derivedTypes.map(e => {
-    resolvers[e] = {};
+  // const derivedTypes = Object.keys(generatedTypeMap).filter(
+  //   e =>
+  //     generatedTypeMap[e].kind === 'InterfaceTypeDefinition' ||
+  //     generatedTypeMap[e].kind === 'UnionTypeDefinition'
+  // );
+  // derivedTypes.map(e => {
+  //   resolvers[e] = {};
 
-    resolvers[e]['__resolveType'] = (obj, context, info) => {
-      return obj['FRAGMENT_TYPE'];
-    };
-  });
+  //   resolvers[e]['__resolveType'] = (obj, context, info) => {
+  //     return obj['FRAGMENT_TYPE'];
+  //   };
+  // });
+  // DISABLED FOR THIS FORK, DON'T WANT FORCED __resolveType GENERATION
 
   return resolvers;
 };
